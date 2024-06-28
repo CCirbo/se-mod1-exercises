@@ -4,7 +4,7 @@ require_relative 'leather_chair'
 RSpec.describe LeatherChair do
   it 'is not faded' do
     chair = LeatherChair.new
-
+    
     expect(chair.faded?).to be false
   end
 

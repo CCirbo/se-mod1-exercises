@@ -1,3 +1,7 @@
+RSpec.configure do |config|
+  config.formatter = :documentation 
+  end
+
 RSpec.describe 'all test' do
   it 'test all zeroes' do
     numbers = [0, 0, 0, 0, 0, 0, 0]
@@ -7,11 +11,24 @@ RSpec.describe 'all test' do
     expect(all_zeros).to eq(true)
   end
 
-  xit 'not all zeroes' do
+  it 'test all zeroes2' do
+    numbers = [0, 0, 0, 0, 0, 0, 0]
+    all_zeros = numbers.all? {|number| number.zero?}
+
+    expect(all_zeros).to eq(true)
+  end
+
+  it 'test all zeroes3' do
+    numbers = [0, 0, 0, 0, 0, 0, 0]
+    all_zeros = numbers.all?(&:zero?)
+
+    expect(all_zeros).to eq(true)
+  end
+  
+   it 'not all zeroes' do
     numbers = [0, 0, 0, 0, 1, 0, 0, 0]
-    all_zeros = numbers.all? do |number|
-      # Your code goes here
-    end
+    all_zeros = numbers.all?(&:zero?)
+     
     expect(all_zeros).to eq(false)
   end
 

@@ -14,7 +14,7 @@ RSpec.describe Cat do
     expect(carlos.name).to eq("Carlos")
   end
 
-  it 'has a sound' do
+   it 'has a sound' do
     carlos = Cat.new("Carlos")
 
     expect(carlos.sound).to eq("meow")

@@ -1,3 +1,7 @@
+RSpec.configure do |config|
+  config.formatter = :documentation 
+  end
+
 RSpec.describe 'count test' do
 
   it 'words with e' do
@@ -8,47 +12,67 @@ RSpec.describe 'count test' do
     expect(tally).to eq(3)
   end
 
-  xit 'numbers greater than 17' do
+  it 'words with e2' do
+    words = ["thing", "phone", "bark", "belt", "shoe", "bath"]
+    tally = words.count {|word| word.include?('e')}
+     
+    expect(tally).to eq(3)
+  end
+
+   it 'numbers greater than 17' do
     numbers = [9, 18, 12, 17, 1, 3, 99]
     tally = numbers.count do |number|
-      # Your code goes here
+     number > 17
     end
     expect(tally).to eq(2)
   end
 
-  xit 'words that are uppercase' do
-    words = ["trousers", "SOCKS", "sweater", "Cap", "SHOE", "TIE"]
-    # Your code goes here
-    expect(tally).to eq(3)
-  end
-
-  xit 'words ending in ing' do
-    words = ["thought", "brake", "shin", "juice", "trash"]
-    # Your code goes here
-    expect(tally).to eq(0)
-  end
-
-  xit 'even numbers' do
-    numbers = [9, 2, 1, 3, 18, 39, 71, 4, 6]
-    # Your code goes here
-    expect(tally).to eq(4)
-  end
-
-  xit 'multiples of 5' do
-    numbers = [2, 5, 19, 25, 35, 67]
-    # Your code goes here
-    expect(tally).to eq(3)
-  end
-
-  xit 'round prices' do
-    prices = [1.0, 3.9, 5.99, 18.5, 20.0]
-    # Your code goes here
+  it 'numbers greater than 17.2' do
+    numbers = [9, 18, 12, 17, 1, 3, 99]
+    tally = numbers.count {|number| number > 17}
+    
     expect(tally).to eq(2)
   end
 
-  xit 'four letter words' do
+   it 'words that are uppercase' do
+    words = ["trousers", "SOCKS", "sweater", "Cap", "SHOE", "TIE"]
+   tally = words.count {|word| word.match?(/[[:uppercase]]/)}
+    expect(tally).to eq(3)
+  end
+
+   it 'words ending in ing' do
+    words = ["thought", "brake", "shin", "juice", "trash"]
+    tally = words.count {|word| word.match?(/\>"ing"/)}
+    expect(tally).to eq(0)
+  end
+
+   it 'even numbers' do
+    numbers = [9, 2, 1, 3, 18, 39, 71, 4, 6]
+   tally = numbers.count(&:even?)
+    expect(tally).to eq(4)
+  end
+
+  it 'even numbers2' do
+    numbers = [9, 2, 1, 3, 18, 39, 71, 4, 6]
+   tally = numbers.count {|number| number.even?}
+    expect(tally).to eq(4)
+  end
+
+   it 'multiples of 5' do
+    numbers = [2, 5, 19, 25, 35, 67]
+    tally = numbers.count {|number| number % 5 == 0}
+    expect(tally).to eq(3)
+  end
+
+   it 'round prices' do
+    prices = [1.0, 3.9, 5.99, 18.5, 20.0]
+    tally = prices.count {|price| price == price.to_i}
+    expect(tally).to eq(2)
+  end
+
+   it 'four letter words' do
     words = ["bake", "bark", "corn", "apple", "wart", "bird", "umbrella", "fart"]
-    # Your code goes here
+    tally = words.count {|word| word.length == 4}
     expect(tally).to eq(6)
   end
 end

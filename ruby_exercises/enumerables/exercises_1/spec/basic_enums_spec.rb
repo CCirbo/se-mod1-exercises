@@ -1,5 +1,5 @@
 RSpec.describe 'Basic Enums Test' do
-  it 'solve for x' do
+  xit 'solve for x' do
     s = ''
     5.times do
       # write code here

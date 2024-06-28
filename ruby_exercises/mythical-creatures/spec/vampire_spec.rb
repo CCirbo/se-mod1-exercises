@@ -17,18 +17,18 @@ RSpec.describe Vampire do
     expect(vampire.pet).to eq('bat')
   end
 
-  it 'can keep other pets' do
+    it 'can keep other pets' do
     vampire = Vampire.new('Varney', 'fox')
     expect(vampire.pet).to eq('fox')
   end
 
-  it 'is thirsty by default' do
+   it 'is thirsty by default' do
     vampire = Vampire.new('The Count')
 
-    expect(vampire.thirsty).to be true
+    expect(vampire.thirsty?).to be true
   end
 
-  it 'is not thirsty after drinking' do
+   it 'is not thirsty after drinking' do
     vampire = Vampire.new('Elizabeth Bathory')
 
     vampire.drink

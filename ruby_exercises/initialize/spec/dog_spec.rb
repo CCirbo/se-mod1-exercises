@@ -14,7 +14,7 @@ RSpec.describe Dog do
     expect(doug.greeting).to eq("Woof, I'm Doug the Golden Retriever!")
   end
 
-  it 'can have a different greeting' do
+   it 'can have a different greeting' do
     dolly = Dog.new("Dolly", "Lab")
 
     expect(dolly.greeting).to eq("Woof, I'm Dolly the Lab!")

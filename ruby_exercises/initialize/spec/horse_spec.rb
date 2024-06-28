@@ -20,7 +20,7 @@ RSpec.describe Horse do
     expect(harry.diet).to eq([])
   end
 
-  it 'can add to diet' do
+   it 'can add to diet' do
     harry = Horse.new("Harry")
 
     harry.add_to_diet("Hay")

@@ -1,6 +1,10 @@
 require 'rspec'
 require './lib/medusa'
 
+RSpec.configure do |config|
+  config.formatter = :documentation 
+  end
+
 RSpec.describe Medusa do
   it 'has a name' do
     medusa = Medusa.new('Cassiopeia')
@@ -12,7 +16,7 @@ RSpec.describe Medusa do
     expect(medusa.statues).to be_empty
   end
 
-  it 'gains a statue when staring at a person' do
+    it 'gains a statue when staring at a person' do
     medusa = Medusa.new('Cassiopeia')
     victim = Person.new('Perseus')
 
@@ -22,7 +26,7 @@ RSpec.describe Medusa do
     expect(medusa.statues.first).to be_an_instance_of(Person)
   end
 
-  it 'turns a person to stone when staring at them' do
+   it 'turns a person to stone when staring at them' do
     medusa = Medusa.new('Cassiopeia')
     victim = Person.new('Perseus')
 
@@ -31,11 +35,40 @@ RSpec.describe Medusa do
     expect(victim.stoned?).to be true
   end
 
-  it 'can only have three victims' do
+    it 'can only have three victims' do
+    medusa = Medusa.new('Cassiopeia')
+    victim = Person.new('Perseus')
+    victim2= Person.new('Diana')
+    victim3 = Person.new('Zeus')
+    victim4 = Person.new('Circe')
+ 
+    medusa.stare(victim)
+    medusa.stare(victim2)
+    medusa.stare(victim3)
+    medusa.stare(victim4)
+
+    expect(medusa.statues.count).to eq(3)
+ 
     # your code here
   end
 
-  it 'if a fourth victim is stoned the first is unstoned' do
+    it 'if a fourth victim is stoned the first is unstoned' do
+    medusa = Medusa.new('Cassiopeia')
+    victim = Person.new('Perseus')
+    victim2= Person.new('Diana')
+    victim3 = Person.new('Zeus')
+    victim4 = Person.new('Circe')
+ 
+    medusa.stare(victim)
+    medusa.stare(victim2)
+    medusa.stare(victim3)
+    medusa.stare(victim4)
+    
+    expect(victim.stoned?).to be false
+    expect(victim2.stoned?).to be true
+    expect(victim3.stoned?).to be true
+    expect(victim4.stoned?).to be true
+    expect(medusa.statues.count).to eq(3)
     # your code here
   end
 end

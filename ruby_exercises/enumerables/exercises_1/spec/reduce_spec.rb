@@ -1,3 +1,8 @@
+RSpec.configure do |config|
+  config.formatter = :documentation 
+  end
+
+
 RSpec.describe 'reduce' do
 
   it 'sums a list of numbers' do
@@ -8,47 +13,102 @@ RSpec.describe 'reduce' do
     expect(result).to eq(473)
   end
 
-  xit 'subtracts a list of numbers' do
+  it 'sums a list of numbers2' do
+    numbers = [32, 1, 21, 5, 81, 333]
+    result = numbers.reduce(0) {|sum, number|  sum + number}
+   
+    expect(result).to eq(473)
+  end
+
+  it 'sums a list of numbers3' do
+    numbers = [32, 1, 21, 5, 81, 333]
+    result = numbers.reduce(:+)
+   
+    expect(result).to eq(473)
+  end
+
+   it 'subtracts a list of numbers' do
     numbers = [28, 12, 38, 1, 91]
     result = numbers.reduce(0) do |difference, number|
-      # Your code goes here
+      difference - number
     end
     expect(result).to eq(-170)
   end
 
-  xit 'multiplies a list of numbers' do
+  it 'subtracts a list of numbers2' do
+    numbers = [28, 12, 38, 1, 91]
+    result = numbers.reduce(0) {|difference, number|difference - number}
+   
+    expect(result).to eq(-170)
+  end
+
+  it 'subtracts a list of numbers3' do
+    numbers = [28, 12, 38, 1, 91]
+    result = numbers.reduce(0, :-)
+   
+    expect(result).to eq(-170)
+  end
+
+   it 'multiplies a list of numbers' do
     numbers = [2, 3, 5, 7]
-    # initial value is 1
-    # Your code goes here
+    result = numbers.reduce(1, :*)
     expect(result).to eq(210)
   end
 
-  xit 'capitalize key words in phrase' do
+  it 'multiplies a list of numbers2' do
+    numbers = [2, 3, 5, 7]
+    result = numbers.reduce(1) {|difference, number|difference * number}
+    expect(result).to eq(210)
+  end
+
+   it 'capitalize key words in phrase' do
     keywords = ["fish", "blue"]
-    # initial value is 'one fish two fish red fish blue fish'
-    # Your code goes here
+    initial_value = 'one fish two fish red fish blue fish'
+      result = keywords.reduce(initial_value) {|phrase, keyword| phrase.gsub(/\b#{keyword}\b/i, keyword.upcase)}
+   
     expect(result).to eq('one FISH two FISH red FISH BLUE FISH')
   end
 
-  xit 'divides 560 by a bunch of numbers' do
+  it 'capitalize key words in phrase2' do
+    keywords = ["fish", "blue"]
+    initial_value = 'one fish two fish red fish blue fish'
+      result = keywords.reduce(initial_value) do |phrase, keyword| 
+        phrase.gsub(/\b#{keyword}\b/i, keyword.upcase)
+      end
+    
+    expect(result).to eq('one FISH two FISH red FISH BLUE FISH')
+  end
+
+  it 'capitalize key words in phrase3' do
+    keywords = ["fish", "blue"]
+    initial_value = 'one fish two fish red fish blue fish'
+      result = keywords.reduce(initial_value) do |phrase, keyword| 
+        phrase.gsub("#{keyword}", keyword.upcase)
+      end
+ 
+    expect(result).to eq('one FISH two FISH red FISH BLUE FISH')
+  end
+
+  it 'divides 560 by a bunch of numbers' do
     numbers = [2, 2, 2, 5, 7]
     # initial value is 560
-    # Your code goes here
+     result = numbers.reduce(560) {|quotient, number| quotient / number}
     expect(result).to eq(2)
   end
 
-  xit 'subtract smallest values from 100' do
+   it 'subtract smallest values from 100' do
     elements = [[8, 5, 3], [1, 9, 11], [4, 7, 2], [19, 34, 6]]
     # initial value is 100
-    # Your code goes here
+    result = elements.reduce(100) {|difference, element| difference -= element.min}
     expect(result).to eq(88)
   end
 
-  xit 'adds all second values together' do
+   it 'adds all second values together' do
     elements = [["a", 1], ["b", 9], ["c", 21]]
     # initial value is 0
-    # Your code goes here
+    result = elements.reduce(0) {|sum, element| sum + element[1]}
     expect(result).to eq(31)
   end
+
 end
 
